@@ -2,14 +2,11 @@ global userreal
 global passreal
 global keycode
 
-userreal = 'scs'
-passreal = 'python'
-keycode = '1401'
+userreal = ''
+passreal = ''
+keycode = ''
 
 def userafter():
-
-    print("Login Portal:")
-    print("")
 
     userinput=input("Username? ")
     
@@ -169,7 +166,7 @@ def loggedin():
     else:
         print("Invalid Input.")
         print("")
-        loggedin()
+        start()
         
 def sendtofile():
     
@@ -312,5 +309,41 @@ def resetkeycodecontinue():
         print("")
         
         resetkeycodecontinue()
+        
+def start():
     
-user()
+    print("Login Portal:")
+    print("")
+    
+    starttwo()
+    
+def starttwo():
+    
+    print("Enter '1' for sign in.")
+    print("Enter '2' for sign up.")
+    print("")
+    
+    startchoice=input("Enter choice here: ")
+    print("")
+    
+    if startchoice == '1':
+        
+        user()
+        
+    elif startchoice == '2':
+    
+        signup()
+    
+    else:
+        
+        print("Invalid Input. Try again.")
+        print("")
+        starttwo()
+        
+def signup():
+    
+    print("Sorry! We aren't accepting any more users right now!")
+    #Code not finished
+    exit()
+    
+start()
