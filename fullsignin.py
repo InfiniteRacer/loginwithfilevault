@@ -162,11 +162,11 @@ def loggedin():
         
         print("Logging you out...")
         print("")
-        userafter()
+        startafter()
     else:
         print("Invalid Input.")
         print("")
-        start()
+        loggedin()
         
 def sendtofile():
     
@@ -340,10 +340,89 @@ def starttwo():
         print("")
         starttwo()
         
+def startafter():
+    
+    print("Login Portal:")
+    print("")
+    
+    starttwoafter()
+    
+def starttwoafter():
+    
+    print("Enter '1' for sign in.")
+    print("Enter '2' for sign up.")
+    print("")
+    
+    startchoice=input("Enter choice here: ")
+    print("")
+    
+    if startchoice == '1':
+        
+        userafter()
+        
+    elif startchoice == '2':
+    
+        signup()
+    
+    else:
+        
+        print("Invalid Input. Try again.")
+        print("")
+        starttwoafter()
+        
 def signup():
     
-    print("Sorry! We aren't accepting any more users right now!")
-    #Code not finished
-    exit()
+    global userreal
+    
+    userreal=input("What would you like your username to be?: ")
+    print("")
+    
+    signuppass()
+    
+def signuppass():
+    
+    global passreal
+    
+    passchecksign=input("What would you like your password to be?: ")
+    passchecktwosign=input("Enter password again: ")
+    
+    if passchecksign == passchecktwosign:
+        print("")
+        
+        passreal = passchecktwosign
+        
+        signupkeycode()
+        
+    else:
+        print("")
+        print("Passwords don't match. Try again.")
+        print("")
+        
+        signuppass()
+        
+def signupkeycode():
+    
+    global keycode
+    
+    keychecksign=input("What would you like your keycode to be?: ")
+    keychecktwosign=input("Enter keycode again: ")
+    
+    if keychecksign == keychecktwosign:
+        print("")
+        
+        keycode = keychecktwosign
+        
+        print("Success! Please login to continue setup.")
+        print("")
+        
+        start()
+        
+    else:
+        print("")
+        print("Codes don't match. Try again.")
+        print("")
+        
+        signupkeycode()
+
     
 start()
