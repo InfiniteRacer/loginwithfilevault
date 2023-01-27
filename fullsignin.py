@@ -8,11 +8,16 @@ keycode = ''
 
 def userafter():
 
-    userinput=input("Username? ")
+    userinput=input("Username? (Enter 'n' to cancel) ")
     
     if userinput == userreal:
         print("")
         passwordafter()
+    elif userinput == 'n':
+        print("")
+        print("Canceled!")
+        print("")
+        start()
     else:
         print("")
         print("There is no user with that username. Try again.")
@@ -21,13 +26,18 @@ def userafter():
         
 def passwordafter():
     
-    passwordinput=input("Password? ")
+    passwordinput=input("Password? (Enter 'n' to cancel) ")
     
     if passwordinput == passreal:
         print("")
         print("Loading you in...")
         print("")
         loggedinname()
+    elif passwordinput == 'n':
+        print("")
+        print("Canceled!")
+        print("")
+        start()
     else:
         print("")
         print("Wrong! Try again.")
@@ -39,11 +49,16 @@ def user():
     print("Login Portal:")
     print("")
 
-    userinput=input("Username? ")
+    userinput=input("Username? (Enter 'n' to cancel) ")
     
     if userinput == userreal:
         print("")
         password()
+    elif userinput == 'n':
+        print("")
+        print("Canceled!")
+        print("")
+        start()
     else:
         print("")
         print("There is no user with that username. Try again.")
@@ -52,13 +67,18 @@ def user():
         
 def password():
     
-    passwordinput=input("Password? ")
+    passwordinput=input("Password? (Enter 'n' to cancel) ")
     
     if passwordinput == passreal:
         print("")
         print("Loading you in...")
         print("")
         loggedinfirst()
+    elif passwordinput == 'n':
+        print("")
+        print("Canceled!")
+        print("")
+        start()
     else:
         print("")
         print("Wrong! Try again.")
@@ -140,7 +160,8 @@ def loggedin():
     print("Enter '1' to access your file vault.")
     print("Enter '2' to reset your password.")
     print("Enter '3' to reset your keycode.")
-    print("Enter '4' to log out.")
+    print("Enter '4' to delete your account.")
+    print("Enter '5' to log out.")
     print("")
     
     loggedinmenu=input("Enter your number choice: ")
@@ -159,6 +180,10 @@ def loggedin():
         resetkeycode()
         
     elif loggedinmenu == '4':
+        
+        deleteacc()
+        
+    elif loggedinmenu == '5':
         
         print("Logging you out...")
         print("")
@@ -374,17 +399,51 @@ def signup():
     
     global userreal
     
-    userreal=input("What would you like your username to be?: ")
-    print("")
+    userreal=input("What would you like your username to be?: (Enter 'n' to cancel) ")
+    
+    if userreal == 'n':
+        
+        userreal = ''
+        
+        print("")
+        print("Sign up canceled!")
+        print("")
+        start()
+        
+    else:
+        
+        print("")
     
     signuppass()
     
 def signuppass():
     
+    global userreal
     global passreal
     
-    passchecksign=input("What would you like your password to be?: ")
-    passchecktwosign=input("Enter password again: ")
+    passchecksign=input("What would you like your password to be?: (Enter 'n' to cancel) ")
+    
+    if passchecksign == 'n':
+        
+        userreal = ''
+        passreal = ''
+        
+        print("")
+        print("Sign up canceled!")
+        print("")
+        start()
+    
+    passchecktwosign=input("Enter password again: (Enter 'n' to cancel) ")
+    
+    if passchecktwosign == 'n':
+        
+        userreal = ''
+        passreal = ''
+        
+        print("")
+        print("Sign up canceled!")
+        print("")
+        start()
     
     if passchecksign == passchecktwosign:
         print("")
@@ -402,10 +461,37 @@ def signuppass():
         
 def signupkeycode():
     
+    global userreal
+    global passreal
     global keycode
     
-    keychecksign=input("What would you like your keycode to be?: ")
-    keychecktwosign=input("Enter keycode again: ")
+    keychecksign=input("What would you like your keycode to be?: (Enter 'n' to cancel) ")
+    
+    if keychecksign == 'n':
+        
+        userreal = ''
+        passreal = ''
+        keycode = ''
+        
+        print("")
+        print("Sign up canceled!")
+        print("")
+        
+        start()
+    
+    keychecktwosign=input("Enter keycode again: (Enter 'n' to cancel) ")
+    
+    if keychecktwosign == 'n':
+        
+        userreal = ''
+        passreal = ''
+        keycode = ''
+        
+        print("")
+        print("Sign up canceled!")
+        print("")
+        
+        start()
     
     if keychecksign == keychecktwosign:
         print("")
@@ -423,6 +509,80 @@ def signupkeycode():
         print("")
         
         signupkeycode()
-
+        
+def deleteacc():
     
+    print("Deleting account process.")
+    print("")
+    deleteacc2()
+    
+def deleteacc2():
+    
+    checkpointdel=input("Are you sure you want to delete your account? (y/n) ")
+    
+    if checkpointdel == 'y':
+        print("")
+        deleteacc3()
+    elif checkpointdel == 'n':
+        print("")
+        print("Process stopped.")
+        print("")
+        loggedin()
+    else:
+        print("")
+        print("Invalid input. Try again.")
+        print("")
+        deleteacc2()
+        
+def deleteacc3():
+    
+    checkpointdel=input("Agree to: login details will no longer work and you will to to sign up again: (y/n) ")
+    
+    if checkpointdel == 'y':
+        print("")
+        deleteaccfinal()
+    elif checkpointdel == 'n':
+        print("")
+        print("Process stopped.")
+        print("")
+        loggedin()
+    else:
+        print("")
+        print("Invalid input. Try again.")
+        print("")
+        deleteacc3()
+        
+def deleteaccfinal():
+    
+    global userreal
+    global passreal
+    global keycode
+    
+    checkdel=input("Enter password: ")
+    
+    if checkdel == passreal:
+        print("")
+        checkdelogin=input("Enter keycode: ")
+        
+        if checkdelogin == keycode:
+            print("")
+            print("Account has been deleted.")
+            print("")
+            
+            userreal = ''
+            passreal = ''
+            keycode = ''
+            
+            start()
+        else:
+            print("")
+            print("Incorrect keycode. Please start and try again.")
+            print("")
+            deleteaccfinal()
+    else:
+        print("")
+        print("Incorrect password. Please try again.")
+        print("")
+        deleteaccfinal()
+
 start()
