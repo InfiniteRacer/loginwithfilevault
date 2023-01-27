@@ -185,18 +185,26 @@ def passsection():
 
     while True:
     
-        userinput=input("Key code? ")
+        userinput=input("Key code? (Enter 'n' to cancel) ")
         
         if userinput == keycode:
             
             print("")
             print("Access Granted.")
             sendtofile()
+            
+        elif userinput == 'n':
+            
+            print("")
+            print("Vault login stopped.")
+            print("")
+            
+            loggedinname()
     
         else:
         
             print("")
-            print("Access Denied.")
+            print("Access Denied OR Invalid Input.")
             print("")
         
 def vaultstart():
@@ -228,22 +236,81 @@ def resetkeycode():
     print("")
     
     if resetcontinue == 'y':
-        resetpasswordcontinue()
+        resetkeycodecontinue()
     elif resetcontinue == 'n':
-        ()
+        loggedinname()
     else:
         print("Invalid Input. Try again...")
         print("")
-        resetpassword()
+        resetkeycode()
         
 def resetpasswordcontinue():
     
-    print("")
-    exit()
+    global passreal
+    
+    passcheck=input("New password: ")
+    passchecktwo=input("Enter password again: ")
+    
+    if passcheck == passchecktwo:
+        print("")
+        
+        passreal = passchecktwo
+        
+        print("Success!")
+        print("")
+        
+        loggedinname()
+        
+    else:
+        print("")
+        print("Passwords don't match. Try again.")
+        print("")
+        
+        resetpasswordcontinue()
     
 def resetkeycodecontinue():
+
+    global keycode
     
-    print("")
-    exit()
+    keycodecheckpoint=input("Password to continue: (Enter 'n' to go back) ")
+    
+    if keycodecheckpoint == passreal:
+        
+        print("")
+        
+    elif keycodecheckpoint == 'n':
+        
+        print("")
+        print("Reset stopped.")
+        print("")
+        loggedinname()
+        
+    else:
+        
+        print("")
+        print("Wrong. Try again.")
+        print("")
+        resetkeycodecontinue()
+    
+    keycheck=input("New key code: ")
+    keychecktwo=input("Enter key code again: ")
+    
+    if keycheck == keychecktwo:
+        
+        print("")
+        
+        keycode = keychecktwo
+        
+        print("Success!")
+        print("")
+        
+        loggedinname()
+        
+    else:
+        print("")
+        print("Key codes don't match. Try again.")
+        print("")
+        
+        resetkeycodecontinue()
     
 user()
