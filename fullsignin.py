@@ -158,10 +158,8 @@ def loggedinname():
 def loggedin():
     
     print("Enter '1' to access your file vault.")
-    print("Enter '2' to reset your password.")
-    print("Enter '3' to reset your keycode.")
-    print("Enter '4' to delete your account.")
-    print("Enter '5' to log out.")
+    print("Enter '2' for settings.")
+    print("Enter '3' to log out.")
     print("")
     
     loggedinmenu=input("Enter your number choice: ")
@@ -173,17 +171,9 @@ def loggedin():
         
     elif loggedinmenu == '2':
         
-        resetpassword()
-        
+        settings()
+    
     elif loggedinmenu == '3':
-        
-        resetkeycode()
-        
-    elif loggedinmenu == '4':
-        
-        deleteacc()
-        
-    elif loggedinmenu == '5':
         
         print("Logging you out...")
         print("")
@@ -192,6 +182,38 @@ def loggedin():
         print("Invalid Input.")
         print("")
         loggedin()
+        
+def settings():
+
+    print("Enter '1' to reset your password.")
+    print("Enter '2' to reset your keycode.")
+    print("Enter '3' to delete your account.")
+    print("Enter '4' to go back.")
+    print("")
+    
+    loggedinmenu=input("Enter your number choice: ")
+    print("")
+    
+    if loggedinmenu == '1':
+        
+        resetpassword()
+        
+    elif loggedinmenu == '2':
+        
+        resetkeycode()
+        
+    elif loggedinmenu == '3':
+        
+        deleteacc()
+        
+    elif loggedinmenu == '4':
+        
+        loggedinname()
+        
+    else:
+        print("Invalid Input.")
+        print("")
+        settings()
         
 def sendtofile():
     
@@ -245,7 +267,7 @@ def resetpassword():
     if resetcontinue == 'y':
         resetpasswordcontinue()
     elif resetcontinue == 'n':
-        loggedinname()
+        settings()
     else:
         print("Invalid Input. Try again...")
         print("")
@@ -260,7 +282,7 @@ def resetkeycode():
     if resetcontinue == 'y':
         resetkeycodecontinue()
     elif resetcontinue == 'n':
-        loggedinname()
+        settings()
     else:
         print("Invalid Input. Try again...")
         print("")
@@ -271,6 +293,15 @@ def resetpasswordcontinue():
     global passreal
     
     passcheck=input("New password: ")
+    
+    if passcheck == passreal:
+        
+        print("")
+        print("Password cannot be the same as before!")
+        print("")
+        
+        resetpasswordcontinue()
+    
     passchecktwo=input("Enter password again: ")
     
     if passcheck == passchecktwo:
@@ -281,8 +312,8 @@ def resetpasswordcontinue():
         print("Success!")
         print("")
         
-        loggedinname()
-        
+        settings()
+    
     else:
         print("")
         print("Passwords don't match. Try again.")
@@ -305,7 +336,7 @@ def resetkeycodecontinue():
         print("")
         print("Reset stopped.")
         print("")
-        loggedinname()
+        settings()
         
     else:
         
@@ -315,6 +346,15 @@ def resetkeycodecontinue():
         resetkeycodecontinue()
     
     keycheck=input("New key code: ")
+    
+    if keycheck == keycode:
+        
+        print("")
+        print("Keycodes cannot be the same as before!")
+        print("")
+        
+        resetkeycodecontinue()
+    
     keychecktwo=input("Enter key code again: ")
     
     if keycheck == keychecktwo:
@@ -326,7 +366,7 @@ def resetkeycodecontinue():
         print("Success!")
         print("")
         
-        loggedinname()
+        settings()
         
     else:
         print("")
